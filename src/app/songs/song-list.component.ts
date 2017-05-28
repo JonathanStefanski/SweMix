@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { Observable } from "rxjs/Rx";
 import { Song } from "./song.models";
 
 

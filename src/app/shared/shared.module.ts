@@ -1,12 +1,9 @@
 import { NgModule }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
-import { FormsModule }         from '@angular/forms';
-
-import { SafePipe, TimePipe, EmbedPipe }         from './shared.pipes';
+import { SafePipe, TimePipe, EmbedPipe } from './shared.pipes';
 
 @NgModule({
-  imports:      [ CommonModule ],
+  imports:      [ ],
   declarations: [ TimePipe, SafePipe, EmbedPipe ],
-  exports:      [ TimePipe, SafePipe, EmbedPipe, CommonModule, FormsModule ]
+  exports:      [ TimePipe, SafePipe, EmbedPipe ]
 })
 export class SharedModule { }

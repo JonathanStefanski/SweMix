@@ -13,9 +13,9 @@ export class SongDetailComponent implements OnInit {
     constructor(private _route: ActivatedRoute) { }
 
     ngOnInit() { 
-        this.song = this._route.snapshot.data["song"];
-
-        console.log(this.song.url);
+        this._route.data.subscribe(
+            data => this.song = data['song']
+        );
     }
 
 }
