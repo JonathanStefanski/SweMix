@@ -1,0 +1,160 @@
+<div class="card card-outline-primary">
+    <div class="card-header bg-primary text-white">
+        Edit this song
+    </div>
+
+    <div class="card-block">
+        <form novalidate
+              (ngSubmit)="save()"
+              [formGroup]="songForm">
+            <fieldset>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label font-weight-bold" >Internal Id</label>
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                               id="idId" 
+                               type="number"                                
+                               formControlName="id" />                        
+                    </div>
+                </div>
+
+                <div class="form-group row"
+                    [ngClass]="{'has-danger': (songForm.get('title').touched || songForm.get('title').dirty) && !songForm.get('title').valid }">
+                    <label class="col-md-2 col-form-label font-weight-bold" 
+                           for="titleId">Title</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                               id="titleId" 
+                               type="text" 
+                               placeholder="Title (required)" 
+                               required 
+                               minlength="3"                               
+                               formControlName="title" />
+                        <span class="form-control-feedback" *ngIf="(songForm.get('title').touched || songForm.get('title').dirty) && songForm.get('title').errors">
+                            <span *ngIf="songForm.get('title').errors.required">
+                                Please enter a song title.
+                            </span>
+                            <span *ngIf="songForm.get('title').errors.minlength">
+                                The song title must be longer than 3 characters.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row"
+                    [ngClass]="{'has-danger': (songForm.get('artist').touched || songForm.get('artist').dirty) && !songForm.get('artist').valid }">
+                    <label class="col-md-2 col-form-label font-weight-bold control-label" 
+                           for="artistId">Artist</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                               id="artistId" 
+                               type="text" 
+                               placeholder="Artist (required)" 
+                               required 
+                               minlength="3"                               
+                               formControlName="artist" />
+                        <span class="form-control-feedback" *ngIf="(songForm.get('artist').touched || songForm.get('artist').dirty) && songForm.get('artist').errors">
+                            <span *ngIf="songForm.get('artist').errors.required">
+                                Please enter an artist.
+                            </span>           
+                            <span *ngIf="songForm.get('artist').errors.minlength">
+                                The song artist must be longer than 3 characters.
+                            </span>                 
+                        </span>
+                    </div>
+                </div>
+                
+
+                <div class="form-group row"                    
+                    [ngClass]="{'has-danger': (songForm.get('url').touched || songForm.get('url').dirty) && !songForm.get('url').valid }">
+                    <label class="col-md-2 col-form-label font-weight-bold control-label" 
+                        for="urlId">Url</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                               id="urlId" 
+                               type="url" 
+                               placeholder="Youtube Url (required)" 
+                               required
+                               pattern="https://.+"
+                               formControlName="url" />
+                        <span class="form-control-feedback" *ngIf="(songForm.get('url').touched || songForm.get('url').dirty) && songForm.get('url').errors">
+                            <span *ngIf="songForm.get('url').errors.required">
+                                Please enter the youtube url.
+                            </span>
+                            <span *ngIf="songForm.get('url').errors.pattern">
+                                Please enter a valid youtube url.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row"
+                    [ngClass]="{'has-danger': (songForm.get('length').touched || songForm.get('length').dirty) && !songForm.get('length').valid }">
+                    <label class="col-md-2 col-form-label font-weight-bold control-label" 
+                        for="lengthId">Length</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                               id="lengthId" 
+                               type="number" 
+                               placeholder="Length (required / in seconds)" 
+                               required
+                               formControlName="length" />
+                        <span class="form-control-feedback" *ngIf="(songForm.get('length').touched || songForm.get('length').dirty) && songForm.get('length').errors">
+                            <span *ngIf="songForm.get('length').errors.required">
+                                Please enter the song length.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div *ngIf="songForm.value.downloaded">
+                    <div class="form-group row">
+                        <label for="fileLocationId" class="col-md-2 col-form-label font-weight-bold">File location (local)</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                            id="fileLocationId" 
+                            type="text"
+                            placeholder="File location"
+                            formControlName="fileLocation" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="offset-md-2 col-md-8 checkbox" >
+                        <label>
+                            <input id="downloadedId"
+                                   type="checkbox"
+                                   formControlName="downloaded" >
+                            Song has been downloaded.
+                        </label>
+                    </div>
+                </div>
+                
+                
+                   
+                <div class="form-group row">
+                    <div class="col-md-4 offset-md-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    [disabled]="!songForm.valid">
+                                Save
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<br>Dirty: {{ songForm.dirty }} 
+<br>Touched: {{ songForm.touched }}
+<br>Valid: {{ songForm.valid }}
+<br>Value: {{ songForm.value | json }}
+<br>Value: {{ song | json }}
+<br>False title: {{ (songForm.get('title').touched || songForm.get('title').dirty) && !songForm.get('title').valid }}
