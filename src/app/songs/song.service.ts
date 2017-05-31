@@ -24,6 +24,7 @@ export class SongService {
     }
 
     getSongById(id:number) : Observable<Song> {
+        if (id === 0) { return Observable.of(this.initializeSong()); }
         const url = `${this.baseUrl}/${id}`;
         return this._http.get(url)
             //.do((response: Response) => console.log(response))
@@ -34,6 +35,11 @@ export class SongService {
     _handleError(err: any) {
         console.log(err);
         return Observable.throw(err);
+    }
+
+    initializeSong(): Song {
+        // Return an initialized object
+        return new Song(0, null, null, null, 0);
     }
 
 }

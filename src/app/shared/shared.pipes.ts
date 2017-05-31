@@ -13,6 +13,7 @@ export class SafePipe implements PipeTransform {
 export class EmbedPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
   transform(url:string, autoplay?:boolean) {
+      if (url == null) return null;
       let url_embed = url.replace("watch?v=", "embed/");
       if (autoplay) url_embed += '?autoplay=1';
       return this.sanitizer.bypassSecurityTrustResourceUrl(url_embed);

@@ -23,7 +23,7 @@ import { Page404Component, PageErrorComponent } from "./page-404.component";
   imports: [
     BrowserModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(SongData, { delay: .500 }),
+    InMemoryWebApiModule.forRoot(SongData, { delay: .500, passThruUnknownUrl: true }),
     SongModule,    
     AppRoutingModule    
   ],

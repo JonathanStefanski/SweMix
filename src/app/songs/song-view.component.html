@@ -27,11 +27,23 @@
 </div>
 
 <div class="row">
+    <strong class="col-lg-1 col-md-6">Downloaded:</strong>
+    <span class="col-lg-4 col-md-6">{{song.downloaded}}</span>
+</div>
+
+<div class="row" *ngIf="song.url">
     <strong class="col-lg-1 col-md-6">Video:</strong>
     <div class="col-lg-4 col-md-6">
         <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" [src]="song.url | embed:true" allowfullscreen></iframe>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="offset-md-6 offset-lg-1 col-lg-4 col-md-6"> 
+        <a class="btn btn-primary" [routerLink]="['/songs', song.id, 'edit']">Edit this song</a>          
+        <a class="btn btn-secondary" routerLink="/songs">Return to list</a>             
     </div>
 </div>
 
