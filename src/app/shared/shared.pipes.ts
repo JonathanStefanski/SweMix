@@ -26,14 +26,14 @@ export class EmbedPipe implements PipeTransform {
 export class TimePipe implements PipeTransform {
 
     transform(value: number, args: string):string {
-        let hh = (value - (value % 3600)) / 3600;
-        let mm = (value - (value % 60)) % 60;
+        let hh = (value - (value % 3600)) / 3600;        
+        let mm = ((value % 3600) - (value % 60)) / 60;
         let ss = value % 60;
 
         let result = '';
-        if (hh > 0) result += `${hh}h `;
-        if (mm > 0) result += `${mm}m `;
-        result += `${ss}s`;
+        if (hh > 0) result += `${ss.toString().length > 1 ? '' : 0}${hh}h `;
+        if (mm > 0) result += `${mm.toString().length > 1 ? '' : 0}${mm}m `;
+        result += `${ss.toString().length > 1 ? '' : 0}${ss}s`;
 
         return result;
     }

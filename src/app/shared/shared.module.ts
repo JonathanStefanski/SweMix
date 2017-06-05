@@ -19,4 +19,4 @@ import { DataService } from "./data.service"
     DataService
   ]
 })
-export class SharedModule { }
+export class AppSharedModule { }

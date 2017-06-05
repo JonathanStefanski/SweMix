@@ -3,3 +3,19 @@
   color: white;
   cursor: pointer;
 }
+
+.search-input {
+  width: 350px;
+  height: initial;
+  display: inline-block;
+  padding: 3px 6px;
+  margin-left: 4px;
+}
+
+i.fa.fa-plus {
+  margin-right: 5px;
+  background: #0275d8;
+  border-radius: 50%;
+  color: white;
+  padding: 2px 4px;
+}

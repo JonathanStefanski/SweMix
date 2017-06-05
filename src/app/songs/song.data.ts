@@ -10,8 +10,8 @@ export class SongData implements InMemoryDbService, InMemoryBackendConfig {
             new Song(4, 'Last Friday Night (T.G.I.F.)', 'Katy Perry', "https://www.youtube.com/watch?v=KlyXNRrsk4A", 490),
             new Song(5, 'California Dreaming', 'The Mamas & The Papas', "https://www.youtube.com/watch?v=N-aK6JnyFmk", 157),
             new Song(6, 'Dream On', 'Ronnie James Dio', "https://www.youtube.com/watch?v=H7KTRpmeTdM", 266),
-            new Song(7, 'Teenage Dirtbag', 'Wheatus', "https://www.youtube.com/watch?v=FC3y9llDXuM", 247),
-            new Song(8, 'She Hates Me', 'Puddle Of Mud', "https://www.youtube.com/watch?v=BYE4CVhVkhw", 210)
+            new Song(7, 'Teenage Dirtbag', 'Wheatus', "https://www.youtube.com/watch?v=FC3y9llDXuM", 244),
+            new Song(8, 'She Hates Me', 'Puddle Of Mud', "https://www.youtube.com/watch?v=YSvKliG4ZBU", 217)
         ];
         return { songs };
     }

@@ -10,7 +10,8 @@ import { SongService } from "./song.service";
 import { SongListResolver, SongResolver } from "./song-resolver.service";
 import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
 
-import { SharedModule } from "../shared/shared.module";
+import { AppSharedModule } from "../shared/shared.module";
+import { DataTableModule, SharedModule} from 'primeng/primeng';
 
 const ROUTES = [
     { 
@@ -34,8 +35,10 @@ const ROUTES = [
 
 @NgModule({
     imports: [         
-        SharedModule,
+        AppSharedModule,
         CommonModule,
+        DataTableModule,
+        SharedModule,
         ReactiveFormsModule,
         RouterModule.forChild(ROUTES) 
     ],

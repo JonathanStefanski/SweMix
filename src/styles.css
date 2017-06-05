@@ -6,3 +6,7 @@ nav.navbar {
 .has-danger .help-block {
     color: #d9534f;
 }
+
+.ui-datatable .ui-datatable-footer {
+  overflow: auto !important;  
+}
