@@ -27,7 +27,7 @@ export class TimePipe implements PipeTransform {
 
     transform(value: number, args: string):string {
         let hh = (value - (value % 3600)) / 3600;
-        let mm = (value - (value % 60)) / 60;
+        let mm = (value - (value % 60)) % 60;
         let ss = value % 60;
 
         let result = '';
