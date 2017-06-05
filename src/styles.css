@@ -2,3 +2,7 @@
 nav.navbar {
     margin-bottom: 2rem;
 }
+
+.has-danger .help-block {
+    color: #d9534f;
+}

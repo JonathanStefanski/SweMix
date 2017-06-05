@@ -8,6 +8,7 @@ import { SongDetailComponent } from './song-view.component';
 import { SongEditComponent } from './song-edit.component';
 import { SongService } from "./song.service";
 import { SongListResolver, SongResolver } from "./song-resolver.service";
+import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
 
 import { SharedModule } from "../shared/shared.module";
 
@@ -20,12 +21,14 @@ const ROUTES = [
     { 
         path: 'songs/:id', 
         component: SongDetailComponent, 
-        resolve: { song: SongResolver}
+        resolve: { song: SongResolver},
+        canActivate: [ SongDetailGuard ]
     },
     { 
         path: 'songs/:id/edit', 
         component: SongEditComponent, 
-        resolve: { song: SongResolver}
+        resolve: { song: SongResolver},
+        canDeactivate: [ SongEditGuard ]
     }
 ]
 
@@ -44,7 +47,9 @@ const ROUTES = [
     providers: [
         SongService,
         SongResolver,
-        SongListResolver          
+        SongListResolver,
+        SongDetailGuard,
+        SongEditGuard          
     ]
 })
 export class SongModule { }

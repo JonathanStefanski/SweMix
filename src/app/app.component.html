@@ -8,9 +8,15 @@
     <ul class="nav navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" routerLink="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" routerLink="/songs">Songs</a>
+      </li>      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="songMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Songs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="songMenuLink">          
+          <a class="dropdown-item" routerLink="/songs">Display list</a>
+          <a class="dropdown-item" [routerLink]="['/songs', 0, 'edit']">Add a Song</a>
+        </div>
       </li>
     </ul>
   </div>
