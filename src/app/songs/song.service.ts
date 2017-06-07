@@ -3,47 +3,54 @@ import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 
 import { Song } from './song.models';
-
+import { AuthService } from "../authentication/auth.service";
+import { environment } from '../../environments/environment';
 
 @Injectable()
-export class SongService {   
-    private baseUrl = 'api/songs';
+export class SongService {  
+    private baseUrl = environment.apiUrl + 'api/songs';
+    // private baseUrl = 'api/songs';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: Http,
+                private _auth: AuthService) { }
 
     private extractData(response: Response) {        
         let body = response.json();
-        return body.data || {};
+        return body || {};
     }
 
-    getSongs() : Observable<Song[]> {
-        return this._http.get(this.baseUrl)
+    getSongs() : Observable<Song[]> {   
+        let headers = new Headers({ 'Content-Type': 'application/json','Authorization': 'Bearer ' + this._auth.currentUser.access_token });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.get(this.baseUrl, options)
             //.do((response: Response) => console.log(response))
             .map(this.extractData)
             .catch(this._handleError);
     }
 
     getSongById(id:number) : Observable<Song> {
+        let headers = new Headers({ 'Content-Type': 'application/json','Authorization': 'Bearer ' + this._auth.currentUser.access_token });
+        let options = new RequestOptions({ headers: headers });
+
         if (id === 0) { return Observable.of(this.initializeSong()); }
         const url = `${this.baseUrl}/${id}`;
-        return this._http.get(url)
+        return this._http.get(url, options)
             //.do((response: Response) => console.log(response))
             .map(this.extractData)
             .catch(this._handleError);
     }
 
     deleteSong(id: number): Observable<Response> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
+        
         const url = `${this.baseUrl}/${id}`;
-        return this._http.delete(url, options)
+        return this._http.delete(url)
             .do(data => console.log('deleteSong: ' + JSON.stringify(data)))
             .catch(this._handleError);
     }
 
     saveProduct(song: Song): Observable<Song> {        
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ 'Content-Type': 'application/json','Authorization': 'Bearer ' + this._auth.currentUser.access_token });
         let options = new RequestOptions({ headers: headers });
 
         if (song.id === 0) {

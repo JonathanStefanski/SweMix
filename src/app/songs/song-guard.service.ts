@@ -10,7 +10,7 @@ export class SongDetailGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
-        let id = +route.url[1].path;
+        let id = +route.params['id'];
         if (isNaN(id) || id < 1) {
             alert('Invalid song id');
             // start a new navigation to redirect to list page

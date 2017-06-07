@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
 
 import { SongListComponent } from './song-list.component';
 import { SongDetailComponent } from './song-view.component';
@@ -15,18 +14,18 @@ import { DataTableModule, SharedModule} from 'primeng/primeng';
 
 const ROUTES = [
     { 
-        path: 'songs', 
+        path: '', 
         component: SongListComponent, 
         resolve: { songs: SongListResolver}
     },
     { 
-        path: 'songs/:id', 
+        path: ':id', 
         component: SongDetailComponent, 
         resolve: { song: SongResolver},
         canActivate: [ SongDetailGuard ]
     },
     { 
-        path: 'songs/:id/edit', 
+        path: ':id/edit', 
         component: SongEditComponent, 
         resolve: { song: SongResolver},
         canDeactivate: [ SongEditGuard ]
@@ -36,7 +35,6 @@ const ROUTES = [
 @NgModule({
     imports: [         
         AppSharedModule,
-        CommonModule,
         DataTableModule,
         SharedModule,
         ReactiveFormsModule,
