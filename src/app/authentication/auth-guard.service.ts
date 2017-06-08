@@ -11,17 +11,17 @@ export  class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
                 private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        console.log('In canActivate: ' + state.url);
+        //console.log('In canActivate: ' + state.url);
         return this.checkLoggedIn(state.url);
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        console.log('In canActivateChild: ' + state.url);
+        //console.log('In canActivateChild: ' + state.url);
         return this.checkLoggedIn(state.url);
     }
 
     canLoad(route: Route): boolean {
-        console.log('In canLoad: ' + route.path);
+        //console.log('In canLoad: ' + route.path);
         return this.checkLoggedIn(route.path);
     }
 

@@ -17,7 +17,7 @@ export class SongService {
                 private _auth: AuthService) {
       let bearer = this._auth.currentUser.access_token;
       this.headers = new Headers({ 'Content-Type': 'application/json','Authorization': `Bearer ${bearer}` });
-      this.options = new RequestOptions({ headers: headers });     
+      this.options = new RequestOptions({ headers: this.headers });     
     }
 
     private extractData(response: Response) {        
@@ -26,6 +26,7 @@ export class SongService {
     }
 
     getSongs() : Observable<Song[]> {   
+        //console.log(this._auth.currentUser.roles.join('|'));
         return this._http.get(this.baseUrl, this.options)
             //.do((response: Response) => console.log(response))
             .map(this.extractData)
@@ -45,7 +46,7 @@ export class SongService {
         
         const url = `${this.baseUrl}/${id}`;
         return this._http.delete(url)
-            .do(data => console.log('deleteSong: ' + JSON.stringify(data)))
+            //.do(data => console.log('deleteSong: ' + JSON.stringify(data)))
             .catch(this._handleError);
     }
 
@@ -60,7 +61,7 @@ export class SongService {
         song.id = undefined;
         return this._http.post(this.baseUrl, song, this.options)
             .map(this.extractData)
-            .do(data => console.log('createSong: ' + JSON.stringify(data)))
+            //.do(data => console.log('createSong: ' + JSON.stringify(data)))
             .catch(this._handleError);
     }
 
@@ -68,7 +69,7 @@ export class SongService {
         const url = `${this.baseUrl}/${song.id}`;
         return this._http.put(url, song, this.options)
             .map(() => song)
-            .do(data => console.log('updateSong: ' + JSON.stringify(data)))
+            //.do(data => console.log('updateSong: ' + JSON.stringify(data)))
             .catch(this._handleError);
     }
 

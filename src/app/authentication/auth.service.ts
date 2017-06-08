@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
-import { Observable } from "rxjs/Rx";
+import { Observable, Subject } from "rxjs/Rx";
 
 import { User } from "./auth.model";
 import { environment } from '../../environments/environment';
@@ -9,10 +9,12 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AuthService {
     private baseUrl = environment.apiUrl + 'Token';
-
     currentUser: User;
-    redirectUrl: string;
-    constructor(private _http: Http) { }
+    redirectUrl: string;   
+
+    constructor(private _http: Http) { 
+        this.currentUser = JSON.parse(localStorage.getItem('_currentUser'));  
+    }
 
     private extractData(response: Response) {        
         let body = response.json();
@@ -39,9 +41,12 @@ export class AuthService {
         
         return this._http.post(this.baseUrl, data, options)        
         .map((response: Response) => {
-            let userInfo = this.extractData(response);            
+            let userInfo = this.extractData(response);                        
             if (userInfo) {
-                this.currentUser = userInfo;                
+                this.currentUser = userInfo;          
+                this.currentUser.roles = JSON.parse(userInfo["roles"]);                
+                localStorage.setItem('_currentUser', JSON.stringify(this.currentUser));
+                //console.log(this.currentUser);
                 return true;
             } else {
                 return false;
@@ -52,6 +57,7 @@ export class AuthService {
 
     logout(): void {
         this.currentUser = null;
+        localStorage.removeItem('_currentUser');
     }
 
 }
