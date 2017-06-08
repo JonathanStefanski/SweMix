@@ -31,7 +31,7 @@ export class TimePipe implements PipeTransform {
         let ss = value % 60;
 
         let result = '';
-        if (hh > 0) result += `${ss.toString().length > 1 ? '' : 0}${hh}h `;
+        if (hh > 0) result += `${hh.toString().length > 1 ? '' : 0}${hh}h `;
         if (mm > 0) result += `${mm.toString().length > 1 ? '' : 0}${mm}m `;
         result += `${ss.toString().length > 1 ? '' : 0}${ss}s`;
 
