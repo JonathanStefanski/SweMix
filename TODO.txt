@@ -1,0 +1,13 @@
+1. Create MasterMind API
+2. Create MasterMind Service
+3. Create MasterMind Component
+
+4. Create YouTube Service
+5. Create YouTube Search Component (no route, directive)
+6. Remove Length from Form (or auto-fill)
+7. Pass Youtube Video to Parent
+
+8. Create Registration Component
+9. Add Register method to Auth Service
+10. Add Custom Auth-Guard to edit songs
+11. Remove auth-guard for songs (keep lazy loading if possible)
