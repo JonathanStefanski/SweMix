@@ -5,9 +5,14 @@
 4. Create YouTube Service
 5. Create YouTube Search Component (no route, directive)
 6. Remove Length from Form (or auto-fill)
-7. Pass Youtube Video to Parent
+7. Pass Youtube Video to Parent (auto-fill form)
 
 8. Create Registration Component
 9. Add Register method to Auth Service
 10. Add Custom Auth-Guard to edit songs
 11. Remove auth-guard for songs (keep lazy loading if possible)
+
+12. Add a "next" / "previous" button on the View Pane
+13. Return to the right page when returning after new/edit
+
+
