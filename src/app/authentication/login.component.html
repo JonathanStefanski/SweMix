@@ -66,17 +66,18 @@
                     <div class="col-md-4 offset-md-2">
                         <span>
                             <button class="btn btn-primary"
-                                    type="submit"
+                                    [type]="{'submit' : waiting, 'button' : !waiting}"
                                     style="width:80px;margin-right:10px"
-                                    [disabled]="!loginForm.valid">
-                                Log In
+                                    [disabled]="!loginForm.valid && !waiting">
+                                <span *ngIf="!waiting">Log In</span>
+                                <i *ngIf="waiting" class="text-center fa fa-spin fa-spinner"></i>
                             </button>
                         </span>                        
                      </div>
                 </div>
             </fieldset>
         </form>
-        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>       
+        <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>       
     </div>
 </div>
     </div>
