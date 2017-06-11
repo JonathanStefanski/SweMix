@@ -8,6 +8,7 @@ import { SongEditComponent } from './song-edit.component';
 import { SongService } from "./song.service";
 import { SongListResolver, SongResolver } from "./song-resolver.service";
 import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
+import { YoutubeService } from "./youtube.service"
 
 import { AppSharedModule } from "../shared/shared.module";
 import { DataTableModule, SharedModule} from 'primeng/primeng';
@@ -50,7 +51,8 @@ const ROUTES = [
         SongResolver,
         SongListResolver,
         SongDetailGuard,
-        SongEditGuard          
+        SongEditGuard,
+        YoutubeService          
     ]
 })
 export class SongModule { }

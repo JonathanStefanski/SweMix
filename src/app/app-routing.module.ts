@@ -9,7 +9,7 @@ import { SelectiveStrategy } from "./shared/selective-strategy.service";
 
 const ROUTES = [
     { path: 'home', component: HomeComponent },
-    { path: 'songs', canActivate: [AuthGuard], data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
+    { path: 'songs', canActivate: [ AuthGuard ], data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
     { path: 'error', component: PageErrorComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },    
     { path: '**', component: Page404Component }

@@ -7,6 +7,7 @@ import { Song } from "./song.models";
 import { NumericValidators } from "../shared/numeric.validator";
 import { GenericValidator } from '../shared/generic-validator';
 import { SongService } from "./song.service";
+import { YoutubeService } from "./youtube.service";
 
 @Component({
     moduleId: module.id,
@@ -17,8 +18,10 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
     pageTitle: string;
     songForm : FormGroup;
+    searchForm : FormGroup;
     song : Song;
     errorMessage: string;
+    query: string;
 
     // Use with the generic validation message class
     displayMessage: { [key: string]: string } = {};
@@ -28,7 +31,8 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     constructor(private _route: ActivatedRoute,
                 private _fb: FormBuilder,
                 private _songService: SongService,
-                private _router: Router) { 
+                private _router: Router,
+                private _youtubeService: YoutubeService) { 
 
         // Defines all of the validation messages for the form.
         // These could instead be retrieved from a file or database.
@@ -61,9 +65,9 @@ export class SongEditComponent implements OnInit, AfterViewInit {
 
     
 
-    ngOnInit() {               
-        this._route.data.subscribe(data => this.onSongRetrieved(data['song']));            
-    }   
+    ngOnInit() {
+        this._route.data.subscribe(data => this.onSongRetrieved(data['song']));  
+     }   
 
     ngAfterViewInit():void {
         // Watch for the blur event from any input element on the form.
@@ -118,7 +122,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
             this.pageTitle = 'Add a Song';
         } else {
             this.pageTitle = `Edit Song: ${this.song.title}`;
-        }
+        }      
 
         this.songForm = this._fb.group({
                     id: {value: this.song.id, disabled: true},
@@ -129,6 +133,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                     downloaded: this.song.downloaded,
                     fileLocation: this.song.fileLocation
         });
+      
 
         this.songForm.get('downloaded').valueChanges.subscribe(
             value => {
@@ -137,8 +142,9 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                 else fileLocationControl.clearValidators();  
                 fileLocationControl.updateValueAndValidity();
             }
-        );
+        );        
     }
+    
 
    
 

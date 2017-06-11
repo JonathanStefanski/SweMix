@@ -1,3 +1,27 @@
 .row {
     margin-bottom: 1em;
 }
+
+.card-header {
+    position: relative;
+}
+
+.card-header > .btn { 
+    top: 2px;
+    bottom: 2px;  
+    position: absolute;
+    cursor: pointer;
+}
+
+.card-header > .text-center {   
+    width: 85%;
+    margin: auto;
+}
+
+.card-header > .btn:first-child {   
+    left:2px;
+}
+
+.card-header > .btn:last-child {
+    right:2px;
+}

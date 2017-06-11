@@ -1,3 +1,35 @@
 div.panel-heading {
    font-size: x-large; 
 }
+
+.no-padding {
+    padding: 0;
+}
+
+.card {
+  height: 100%;
+}
+
+.card-header {
+    position: relative;
+}
+
+.card-header > .btn { 
+    top: 2px;
+    bottom: 2px;  
+    position: absolute;
+    cursor: pointer;
+}
+
+.card-header > .text-center {   
+    width: 85%;
+    margin: auto;
+}
+
+.card-header > .btn:first-child {   
+    left:2px;
+}
+
+.card-header > .btn:last-child {
+    right:2px;
+}

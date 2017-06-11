@@ -82,5 +82,4 @@ export class SongService {
         // Return an initialized object
         return new Song(0, null, null, null, 0);
     }
-
 }
