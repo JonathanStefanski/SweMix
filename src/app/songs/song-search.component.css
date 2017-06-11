@@ -1,0 +1,11 @@
+.no-padding {
+    padding: 0;
+}
+
+.card {
+  height: 100%;  
+}
+
+.video-card {
+  cursor: pointer;
+}

@@ -14,7 +14,10 @@ export class SongDetailComponent implements OnInit {
 
     ngOnInit() { 
         this._route.data.subscribe(
-            data => this.song = data['song']
+            data => {
+                let temp : Song = data['song'];
+                this.song = new Song(temp.id, temp.title, temp.artist, temp.youtubeCode, temp.length);
+            }
         );
     }
 

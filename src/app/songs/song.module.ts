@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { SongListComponent } from './song-list.component';
 import { SongDetailComponent } from './song-view.component';
 import { SongEditComponent } from './song-edit.component';
+import { SongSearchComponent } from "./song-search.component";
 import { SongService } from "./song.service";
 import { SongListResolver, SongResolver } from "./song-resolver.service";
 import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
@@ -44,7 +45,8 @@ const ROUTES = [
     declarations: [ 
         SongListComponent,
         SongDetailComponent,
-        SongEditComponent
+        SongEditComponent,
+        SongSearchComponent
     ],
     providers: [
         SongService,

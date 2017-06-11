@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, FormControlName } 
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs/Rx";
 
-import { Song } from "./song.models";
+import { Song, Video } from "./song.models";
 import { NumericValidators } from "../shared/numeric.validator";
 import { GenericValidator } from '../shared/generic-validator';
 import { SongService } from "./song.service";
@@ -12,16 +12,14 @@ import { YoutubeService } from "./youtube.service";
 @Component({
     moduleId: module.id,
     templateUrl: 'song-edit.component.html',
-    styleUrls: ['song-edit.component.css']
+    styleUrls: ['song-edit.component.css']    
 })
 export class SongEditComponent implements OnInit, AfterViewInit {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
     pageTitle: string;
-    songForm : FormGroup;
-    searchForm : FormGroup;
+    songForm : FormGroup;    
     song : Song;
-    errorMessage: string;
-    query: string;
+    errorMessage: string;    
 
     // Use with the generic validation message class
     displayMessage: { [key: string]: string } = {};
@@ -31,8 +29,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     constructor(private _route: ActivatedRoute,
                 private _fb: FormBuilder,
                 private _songService: SongService,
-                private _router: Router,
-                private _youtubeService: YoutubeService) { 
+                private _router: Router) { 
 
         // Defines all of the validation messages for the form.
         // These could instead be retrieved from a file or database.
@@ -45,9 +42,8 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                 required: 'Please enter an artist.',
                 minlength: 'The song artist must be longer than 3 characters.'
             },
-            url: {
-                required: 'Please enter the song\'s url.',
-                pattern: 'Please enter a valid youtube url.'
+            youtubeCode: {
+                required: 'Please enter the song\'s youtube code.'
             },
             length: {
                 required: 'Please enter the song\'s duration (in seconds).',
@@ -128,7 +124,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                     id: {value: this.song.id, disabled: true},
                     title: [this.song.title, [Validators.required, Validators.minLength(3)]],
                     artist: [this.song.artist, [Validators.required, Validators.minLength(3)]],
-                    url: [this.song.url, [Validators.required, Validators.pattern("https://www.youtube.com/watch?.+")]],
+                    youtubeCode: [this.song.youtubeCode, [Validators.required]],
                     length: [this.song.length, [Validators.required, NumericValidators.isBetween(60, 1200)]],
                     downloaded: this.song.downloaded,
                     fileLocation: this.song.fileLocation
@@ -143,6 +139,12 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                 fileLocationControl.updateValueAndValidity();
             }
         );        
+    }
+
+    onVideoReceived(video: Video) {
+        this.songForm.get('title').setValue(video.title);
+        this.songForm.get('youtubeCode').setValue(video.videoId); 
+        this.songForm.get('length').setValue(video.getLength());
     }
     
 

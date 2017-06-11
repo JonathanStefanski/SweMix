@@ -1,0 +1,42 @@
+<div *ngIf="songForm" class="row row-eq-height">
+    <div class="col-md-8">
+        <div class="card card-outline-info">
+            <div class="card-header bg-info text-white">
+                Youtube API Search
+            </div>
+            <div class="card-block">
+                <form novalidate [formGroup]="searchForm">
+                    <fieldset>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label font-weight-bold" for="queryId">Search for:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="queryId" type="text" placeholder="Search words" formControlName="query" />
+                            </div>
+                        </div>
+                        <div class="row">                            
+                            <div *ngFor="let video of videos" class="col-md-2 text-center">
+                                <div class="video-card" (click)="onmouseclick(video)">
+                                    <img [src]="video.thumbnail" [alt]="video.description" class="img-thumbnail">
+                                    {{video.title}}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-outline-warning">
+            <div class="card-header bg-warning">
+                Youtube Video
+            </div>
+            <div class="card-block no-padding">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe *ngIf="songForm.value.youtubeCode && songForm.get('youtubeCode').valid" class="embed-responsive-item" [src]="songForm.value.youtubeCode | embed:false"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

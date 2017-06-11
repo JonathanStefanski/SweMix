@@ -2,14 +2,6 @@ div.panel-heading {
    font-size: x-large; 
 }
 
-.no-padding {
-    padding: 0;
-}
-
-.card {
-  height: 100%;
-}
-
 .card-header {
     position: relative;
 }

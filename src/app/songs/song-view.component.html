@@ -17,8 +17,8 @@
 </div>
 
 <div class="row">
-    <strong class="col-lg-2 col-md-6">Link:</strong>
-    <span class="col-lg-4 col-md-6"><a [href]="song.url | safe">{{song.url}}</a></span>
+    <strong class="col-lg-2 col-md-6">Code:</strong>
+    <span class="col-lg-4 col-md-6"><a [href]="song.getUrl() | safe">{{song.youtubeCode}}</a></span>
 </div>
 
 <div class="row">
@@ -31,11 +31,11 @@
     <span class="col-lg-4 col-md-6">{{song.downloaded}}</span>
 </div>
 
-<div class="row" *ngIf="song.url">
+<div class="row" *ngIf="song.youtubeCode">
     <strong class="col-lg-2 col-md-6">Video:</strong>
     <div class="col-lg-4 col-md-6">
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" [src]="song.url | embed:true" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" [src]="song.youtubeCode | embed:true" allowfullscreen></iframe>
         </div>
     </div>
 </div>

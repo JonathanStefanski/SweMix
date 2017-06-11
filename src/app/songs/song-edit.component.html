@@ -55,18 +55,17 @@
                 </div>                
 
                 <div class="form-group row"
-                    [ngClass]="{'has-danger': displayMessage.url }">
+                    [ngClass]="{'has-danger': displayMessage.youtubeCode }">
                     <label class="col-md-2 col-form-label font-weight-bold control-label" 
-                        for="urlId">Url</label>
+                        for="youtubeCodeId">Youtube code</label>
 
                     <div class="col-md-8">
                         <input class="form-control" 
-                               id="urlId" 
-                               type="url" 
-                               placeholder="Youtube Url (required)"                                
-                               formControlName="url" />
-                        <span class="help-block" *ngIf="displayMessage.url">
-                                {{displayMessage.url}}
+                               id="youtubeCodeId"
+                               placeholder="Youtube Code (required)"                                
+                               formControlName="youtubeCode" />
+                        <span class="help-block" *ngIf="displayMessage.youtubeCode">
+                                {{displayMessage.youtubeCode}}
                         </span>
                     </div>
                 </div>
@@ -135,27 +134,4 @@
     </div>
 </div>
 
-<div class="row row-eq-height">
-    <div class="col-md-8">
-        <div class="card card-outline-info">
-            <div class="card-header bg-info text-white">
-                Youtube API Search
-            </div>
-            <div class="card-block">
-                Here comes a form!
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-outline-warning">
-            <div class="card-header bg-warning">
-                Youtube Video
-            </div>
-            <div class="card-block no-padding">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe *ngIf="songForm.value.url && songForm.get('url').valid" class="embed-responsive-item" [src]="songForm.value.url | embed:false" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<song-search [songForm]="songForm" (videoClick)="onVideoReceived($event)"></song-search>
