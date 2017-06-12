@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { YoutubeService } from "./youtube.service";
 
@@ -12,7 +12,7 @@ import { Video } from "./song.models";
     styleUrls: ['song-search.component.css'],
 
 })
-export class SongSearchComponent implements OnInit {
+export class SongSearchComponent implements OnInit, OnChanges {
     @Input() songForm: FormGroup;
     @Output() videoClick = new EventEmitter<Video>();
     searchForm: FormGroup;
@@ -41,6 +41,15 @@ export class SongSearchComponent implements OnInit {
                 }
             );        
     } 
+
+    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {              
+        for (let propName in changes) {  
+            if (propName == "songForm") {
+                let changedProp = changes[propName];
+                this.songForm = changedProp.currentValue
+            };
+        }
+    }
 
 
     onmouseclick(video: Video) {

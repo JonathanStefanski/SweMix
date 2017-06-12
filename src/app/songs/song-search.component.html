@@ -5,7 +5,7 @@
                 Youtube API Search
             </div>
             <div class="card-block">
-                <form novalidate [formGroup]="searchForm">
+                <form *ngIf="searchForm" novalidate [formGroup]="searchForm">
                     <fieldset>
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label font-weight-bold" for="queryId">Search for:</label>

@@ -25,3 +25,12 @@ div.panel-heading {
 .card-header > .btn:last-child {
     right:2px;
 }
+
+.download-btn {
+    position: absolute;
+    top: 15px;
+    left: 90%;
+    height: 20px;
+    border-radius: 50%;
+    width: 20px;
+}

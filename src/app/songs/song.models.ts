@@ -8,6 +8,7 @@ interface ISong {
     fileLocation: string;
 
     getUrl(): string;
+    getDownload():string;    
 }
 
 export class Song implements ISong  {      
@@ -25,6 +26,14 @@ export class Song implements ISong  {
 
     getUrl():string {
         return `https://www.youtube.com/watch?v=${this.youtubeCode}`;
+    }
+
+    getDownload():string {
+        return `//www.youtubeinmp3.com/widget/button/?
+        video=https://www.youtube.com/watch?
+        v=${this.youtubeCode}&
+        title=${this.title}-${this.artist}&
+        color=ffffff`;
     }
 }
 

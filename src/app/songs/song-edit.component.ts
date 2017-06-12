@@ -62,7 +62,13 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     
 
     ngOnInit() {
-        this._route.data.subscribe(data => this.onSongRetrieved(data['song']));  
+        this._route.data.subscribe(
+            data => {
+                let temp : Song = data['song'];
+                this.song = new Song(temp.id, temp.title, temp.artist, temp.youtubeCode, temp.length);
+                this.onSongRetrieved(this.song);
+            }
+        );
      }   
 
     ngAfterViewInit():void {
