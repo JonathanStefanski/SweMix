@@ -66,6 +66,8 @@ export class SongEditComponent implements OnInit, AfterViewInit {
             data => {
                 let temp : Song = data['song'];
                 this.song = new Song(temp.id, temp.title, temp.artist, temp.youtubeCode, temp.length);
+                this.song.previousId = temp.previousId;
+                this.song.nextId = temp.nextId;
                 this.onSongRetrieved(this.song);
             }
         );

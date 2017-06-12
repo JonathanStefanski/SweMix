@@ -137,4 +137,4 @@
 </div>
 
 <song-search [songForm]="songForm" (videoClick)="onVideoReceived($event)"></song-search>
-<iframe class="download-btn" [src]="song.getDownload() | safe"></iframe>  
+<iframe *ngIf="song.youtubeCode" class="download-btn" [src]="song.getDownload() | safe"></iframe>  
