@@ -124,17 +124,16 @@
                                 Save
                             </button>                            
                             <a *ngIf="song.id != 0" class="btn btn-primary" [routerLink]="['/songs', song.id]">View this song</a>
+                            <a *ngIf="song.id != 0" class="btn btn-info" [href]="song.getDownload() | safe">Download</a>
                             <div class="pull-right">
                                 <a class="btn btn-secondary" routerLink="/songs">Return to list</a> 
-                                <button *ngIf="song.id != 0" type="button" class="btn btn-danger" (click)="delete()">Delete</button> 
-                            </div>      
-                                           
+                                <button *ngIf="song.youtubeCode" type="button" class="btn btn-danger" (click)="delete()">Delete</button> 
+                            </div>                                                 
                     </div>
-                </div>                
+                </div>                    
             </fieldset>
         </form>
     </div>
 </div>
 
 <song-search [songForm]="songForm" (videoClick)="onVideoReceived($event)"></song-search>
-<iframe *ngIf="song.youtubeCode" class="download-btn" [src]="song.getDownload() | safe"></iframe>  
