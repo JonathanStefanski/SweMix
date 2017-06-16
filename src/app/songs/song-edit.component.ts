@@ -117,6 +117,9 @@ export class SongEditComponent implements OnInit, AfterViewInit {
         // Reset the form to clear the flags
         // this.songForm.reset();
         // this._router.navigate(['/songs']);
+        this.songForm.markAsPristine();
+        this.songForm.markAsUntouched();
+        this.songForm.updateValueAndValidity();
         this.msgs = [];
         this.msgs.push({severity:'success', summary:'Save successful', detail:'Song has been updated'});
     }
