@@ -5,7 +5,6 @@ interface ISong {
     youtubeCode: string,
     length: number,
     included: boolean,
-    link: string;
     mixId: string;
 
     getUrl(): string;
@@ -20,7 +19,6 @@ export class Song implements ISong  {
         public youtubeCode:string, 
         public length:number, 
         public included : boolean = false,
-        public link : string = null,
         public mixId : string = null,
         public previousId? : number,
         public nextId? : number
