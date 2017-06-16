@@ -26,9 +26,9 @@
     <span class="col-lg-4 col-md-6">{{song.length | time}}</span>
 </div>
 
-<div class="row">
-    <strong class="col-lg-2 col-md-6">Downloaded:</strong>
-    <span class="col-lg-4 col-md-6">{{song.downloaded}}</span>
+<div *ngIf="song.mixId" class="row">
+    <strong class="col-lg-2 col-md-6">Mix Id:</strong>
+    <span class="col-lg-4 col-md-6">{{song.mixId}}</span>
 </div>
 
 <div class="row" *ngIf="song.youtubeCode">

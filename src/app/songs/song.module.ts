@@ -12,7 +12,7 @@ import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
 import { YoutubeService } from "./youtube.service"
 
 import { AppSharedModule } from "../shared/shared.module";
-import { DataTableModule, SharedModule} from 'primeng/primeng';
+import { DataTableModule, SharedModule, GrowlModule } from 'primeng/primeng';
 
 const ROUTES = [
     { 
@@ -39,6 +39,7 @@ const ROUTES = [
         AppSharedModule,
         DataTableModule,
         SharedModule,
+        GrowlModule,
         ReactiveFormsModule,
         RouterModule.forChild(ROUTES) 
     ],

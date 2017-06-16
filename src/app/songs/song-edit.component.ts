@@ -9,6 +9,8 @@ import { GenericValidator } from '../shared/generic-validator';
 import { SongService } from "./song.service";
 import { YoutubeService } from "./youtube.service";
 
+import { Message } from "primeng/primeng";
+
 @Component({
     moduleId: module.id,
     templateUrl: 'song-edit.component.html',
@@ -20,6 +22,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     songForm : FormGroup;    
     song : Song;
     errorMessage: string;    
+    msgs: Message[] = [];
 
     // Use with the generic validation message class
     displayMessage: { [key: string]: string } = {};
@@ -112,8 +115,10 @@ export class SongEditComponent implements OnInit, AfterViewInit {
 
     onSaveComplete(): void {
         // Reset the form to clear the flags
-        this.songForm.reset();
-        this._router.navigate(['/songs']);
+        // this.songForm.reset();
+        // this._router.navigate(['/songs']);
+        this.msgs = [];
+        this.msgs.push({severity:'success', summary:'Save successful', detail:'Song has been updated'});
     }
 
     onSongRetrieved(song: Song): void {
@@ -133,29 +138,14 @@ export class SongEditComponent implements OnInit, AfterViewInit {
                     title: [this.song.title, [Validators.required, Validators.minLength(3)]],
                     artist: [this.song.artist, [Validators.required, Validators.minLength(3)]],
                     youtubeCode: [this.song.youtubeCode, [Validators.required]],
-                    length: [this.song.length, [Validators.required, NumericValidators.isBetween(60, 1200)]],
-                    downloaded: this.song.downloaded,
-                    fileLocation: this.song.fileLocation
-        });
-      
-
-        this.songForm.get('downloaded').valueChanges.subscribe(
-            value => {
-                const fileLocationControl = this.songForm.get('fileLocation');
-                if (value) fileLocationControl.setValidators([Validators.required]);
-                else fileLocationControl.clearValidators();  
-                fileLocationControl.updateValueAndValidity();
-            }
-        );        
+                    length: [this.song.length, [Validators.required, NumericValidators.isBetween(60, 1200)]]
+         });  
     }
 
     onVideoReceived(video: Video) {
         this.songForm.get('title').setValue(video.title);
         this.songForm.get('youtubeCode').setValue(video.videoId); 
         this.songForm.get('length').setValue(video.getLength());
-    }
-    
-
-   
+    }    
 
 }

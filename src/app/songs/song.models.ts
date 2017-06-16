@@ -4,8 +4,9 @@ interface ISong {
     artist: string,
     youtubeCode: string,
     length: number,
-    downloaded: boolean,
-    fileLocation: string;
+    included: boolean,
+    link: string;
+    mixId: string;
 
     getUrl(): string;
     getDownload():string;    
@@ -18,8 +19,9 @@ export class Song implements ISong  {
         public artist:string, 
         public youtubeCode:string, 
         public length:number, 
-        public downloaded : boolean = false,
-        public fileLocation : string = null,
+        public included : boolean = false,
+        public link : string = null,
+        public mixId : string = null,
         public previousId? : number,
         public nextId? : number
     ) { }
