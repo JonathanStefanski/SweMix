@@ -1,5 +1,3 @@
-<p-growl [(value)]="msgs" [life]="3000"></p-growl>
-
 <div class="card card-outline-primary">
     <div class="card-header bg-primary text-white">        
         <div *ngIf="song.previousId" class="btn btn-secondary" [routerLink]="['/songs', song.previousId, 'edit']"><</div>

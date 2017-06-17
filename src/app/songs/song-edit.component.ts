@@ -9,7 +9,6 @@ import { GenericValidator } from '../shared/generic-validator';
 import { SongService } from "./song.service";
 import { YoutubeService } from "./youtube.service";
 
-import { Message } from "primeng/primeng";
 
 @Component({
     moduleId: module.id,
@@ -21,8 +20,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
     pageTitle: string;
     songForm : FormGroup;    
     song : Song;
-    errorMessage: string;    
-    msgs: Message[] = [];
+    errorMessage: string; 
 
     // Use with the generic validation message class
     displayMessage: { [key: string]: string } = {};
@@ -51,9 +49,6 @@ export class SongEditComponent implements OnInit, AfterViewInit {
             length: {
                 required: 'Please enter the song\'s duration (in seconds).',
                 isBetween: 'Please enter a song longer than one minute and shorter than twenty.'
-            },
-            fileLocation: {
-                required: 'Please enter the directory you saved the file to.',
             }
         };
 
@@ -115,13 +110,8 @@ export class SongEditComponent implements OnInit, AfterViewInit {
 
     onSaveComplete(): void {
         // Reset the form to clear the flags
-        // this.songForm.reset();
-        // this._router.navigate(['/songs']);
-        this.songForm.markAsPristine();
-        this.songForm.markAsUntouched();
-        this.songForm.updateValueAndValidity();
-        this.msgs = [];
-        this.msgs.push({severity:'success', summary:'Save successful', detail:'Song has been updated'});
+        this.songForm.reset();
+        this._router.navigate(['/songs']);
     }
 
     onSongRetrieved(song: Song): void {

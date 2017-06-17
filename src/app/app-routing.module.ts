@@ -9,6 +9,7 @@ import { SelectiveStrategy } from "./shared/selective-strategy.service";
 
 const ROUTES = [
     { path: 'home', component: HomeComponent },
+    { path: 'mastermind', data: {preload: true}, loadChildren: './mastermind/mastermind.module#MasterMindModule'},
     { path: 'songs', canActivate: [ AuthGuard ], data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
     { path: 'error', component: PageErrorComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },    

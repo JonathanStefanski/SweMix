@@ -4,22 +4,24 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 
-import { SongData } from './songs/song.data';
 import { AuthModule } from "./authentication/auth.module";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from "./home/home.component";
 import { Page404Component, PageErrorComponent } from "./page-404.component";
 
+import {DragDropModule} from 'primeng/primeng';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent,  
     Page404Component,
     PageErrorComponent
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     HttpModule,    
     AuthModule,    
