@@ -29,7 +29,7 @@ export class Song implements ISong  {
     }
 
     getDownload():string {
-        return `//www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=${this.youtubeCode}`;
+        return `http://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=${this.youtubeCode}`;
     }
 }
 
