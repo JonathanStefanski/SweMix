@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Song } from "./song.models";
+import { SongService } from "./song.service";
 
 
 @Component({
@@ -12,7 +13,8 @@ export class SongListComponent implements OnInit {
     songs: Song[];
     constructor(
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _songService: SongService
     ) { }
 
     ngOnInit() { 
@@ -27,6 +29,10 @@ export class SongListComponent implements OnInit {
 
     navigateToDetailView(id: number):void {
         this._router.navigate(['/songs', id]);
+    }
+
+    generatePlaylist():void {
+        this._songService.createPlayList(this.songs);
     }
 
 }

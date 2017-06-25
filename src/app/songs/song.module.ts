@@ -12,6 +12,7 @@ import { SongDetailGuard, SongEditGuard } from "./song-guard.service";
 import { YoutubeService } from "./youtube.service"
 
 import { AppSharedModule } from "../shared/shared.module";
+import { WindowService } from "../shared/window.service";
 import { DataTableModule, SharedModule } from 'primeng/primeng';
 
 const ROUTES = [
@@ -49,6 +50,7 @@ const ROUTES = [
         SongSearchComponent
     ],
     providers: [
+        WindowService,
         SongService,
         SongResolver,
         SongListResolver,

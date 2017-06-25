@@ -1,27 +1,7 @@
 .color-box {
     width: 50px;
     height: 50px;
-    border: 2px solid black;
-}
-
-.box-green {
-    background-color: #32CD32;
-}
-
-.box-blue {
-    background-color: #1E90FF;
-}
-
-.box-red {
-    background-color: #800000;
-}
-
-.box-yellow {
-    background-color: #FFFF33;
-}
-
-.box-purple {
-    background-color: #8A2BE2;
+    border: 2px solid black;    
 }
 
 .pick-box {    
@@ -41,4 +21,5 @@
     border-radius: 50%;
     display: inline-block;
     margin: 10px;
+    transition: 1s all;
 }

@@ -1,0 +1,31 @@
+[{
+        "index": 4,
+        "color": "Green",
+        "code": "#32CD32"
+    },
+    {
+        "index": 5,
+        "color": "Blue",
+        "code": "#1E90FF"
+    },
+    {
+        "index": 1,
+        "color": "Red",
+        "code": "#FF0000"
+    },
+    {
+        "index": 2,
+        "color": "Orange",
+        "code": "#FF8C00"
+    },
+    {
+        "index": 3,
+        "color": "Yellow",
+        "code": "#FFFF33"
+    },
+    {
+        "index": 6,
+        "color": "Purple",
+        "code": "#8A2BE2"
+    }
+]

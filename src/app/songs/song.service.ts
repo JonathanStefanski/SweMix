@@ -6,6 +6,8 @@ import { Song } from './song.models';
 import { AuthService } from "../authentication/auth.service";
 import { environment } from '../../environments/environment';
 
+import { WindowService } from "../shared/window.service";
+
 @Injectable()
 export class SongService {  
     private baseUrl = environment.apiUrl + 'api/songs';
@@ -14,16 +16,22 @@ export class SongService {
     options: RequestOptions;
 
     constructor(private _http: Http,
-                private _auth: AuthService) {
+                private _auth: AuthService,
+                private _windowService: WindowService) {
       let bearer = this._auth.currentUser.access_token;
       this.headers = new Headers({ 'Content-Type': 'application/json','Authorization': `Bearer ${bearer}` });
       this.options = new RequestOptions({ headers: this.headers });     
     }
 
-    private extractData(response: Response) {        
-        let body = response.json();
-        return body || {};
-    }
+     private extractData(response: Response) {    
+        try {
+            let body = response.json();
+            return body || {};
+        } catch (error) {
+            return {}
+        }    
+        
+    }    
 
     getSongs() : Observable<Song[]> {   
         //console.log(this._auth.currentUser.roles.join('|'));
@@ -81,5 +89,46 @@ export class SongService {
     initializeSong(): Song {
         // Return an initialized object
         return new Song(0, null, null, null, 0);
+    }
+
+    createPlayList(songs: Song[]) {
+        let win = this._windowService.getNativeWindow();  
+        let urls : String[] = [];
+
+        Observable.forkJoin(songs.map(
+            (song: Song) => {
+                let url = `http://www.youtubeinmp3.com/fetch/?format=JSON&video=https://www.youtube.com/watch?v=${song.youtubeCode}&title=${song.id}`;
+                return this._http.get(url).do(data => console.log(data)).map(this.extractData);
+            }
+        )).subscribe(
+            data => {
+                data.forEach((response) => {
+                    if (response.link != undefined) {
+                        win.open(response.link);                        
+                    }
+                    
+                })
+            }
+        )        
+        // x.map((songs: Song) => {
+        //         let url = `http://www.youtubeinmp3.com/fetch/?format=JSON&video=https://www.youtube.com/watch?v=${song.youtubeCode}&title=${song.id}`;
+               
+        //     })
+        //     .catch(this._handleError);
+
+        // await Promise.all(songs.map(async (song) => {
+        //     let url = `http://www.youtubeinmp3.com/fetch/?format=JSON&video=https://www.youtube.com/watch?v=${song.youtubeCode}&title=${song.id}`;
+        //     this._http.get(url).map(this.extractData).subscribe(response => {urls.push(response.link); console.log(urls)}, err => console.log(err));
+        // }));
+
+        
+
+        // console.log(songs);
+        // let x = this._windowService.getNativeWindow();        
+        // x.open('http://www.google.be', "_BLANK");
+    }    
+
+    private delay(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }

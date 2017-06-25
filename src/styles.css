@@ -7,6 +7,6 @@ nav.navbar {
     color: #d9534f;
 }
 
-.ui-datatable .ui-datatable-footer {
+.ui-datatable .ui-datatable-footer, .ui-datatable .ui-datatable-header {
   overflow: auto !important;  
 }

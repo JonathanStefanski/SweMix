@@ -33,9 +33,12 @@
         <p-header>
             &nbsp;
             <a class="pull-left" [routerLink]="['/songs', 0, 'edit']"><i class="fa fa-plus"></i>Add a song</a>
-            <span class="pull-right"><i class="fa fa-search"></i><input #gb type="text" class="form-control search-input" placeholder="Filter songs"></span>
+            <span class="pull-right search-group"><i class="fa fa-search"></i><input #gb type="text" class="form-control search-input" placeholder="Filter songs"></span>
         </p-header>
-        <p-footer><span class="pull-right">Total length: {{getTotal(songs) | time}}</span></p-footer>
+        <p-footer>
+            <div class="btn btn-outline-primary btn-sm pull-left" (click)="generatePlaylist()">Generate playlist</div>
+            <span class="pull-right">Total length: {{getTotal(songs) | time}}</span>
+        </p-footer>
         <p-column field="id" header="#" [sortable]="true" [style]="{width: '75px', 'text-align': 'center'}"></p-column>
         <p-column field="title" header="Title" [sortable]="true"></p-column>
         <p-column field="artist" header="Artist" [sortable]="true"></p-column>

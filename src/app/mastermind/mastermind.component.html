@@ -1,30 +1,25 @@
-
-
 <div class="row">
-<div class="pick-box col-md-1">
-    <div *ngFor="let color of colors"
-        class="color-box" 
-        pDraggable="dd" 
-        [style.background]="color.code"
-        (onDragStart)="dragStart(color)" 
-        (onDragEnd)="dragEnd()">
-    </div>    
+    <div class="pick-box col-md-1">
+        <div *ngFor="let color of colors" class="color-box" pDraggable="color" [style.background]="color.getCode()" (onDragStart)="dragStart(color)" (onDragEnd)="dragEnd()">
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="drop-box">
+            <div *ngFor="let guess of guesses" pDroppable="color" pDraggable="color" class="color-box" [style.background]="guess.color.getCode()" (onDrop)="drop(guess)" (onDragStart)="dragStart(guess.color)" (onDragEnd)="dragEnd()" (click)="cycleColor(guess)">
+            </div>
+
+            <div *ngFor="let items of old" class="drop-box">
+                <div *ngFor="let c of items" class="color-box" [style.background]="c.color.getCode()">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="drop-box col-md-3">
-    <div *ngFor="let guess of guesses"
-        pDroppable="dd" 
-        class="color-box" 
-        [style.background]="guess.code"
-        (onDrop)="drop(guess)">
-    </div>   
-</div>
-</div>
-
-<div class="btn btn-secondary" (click)="clear()">Clear</div>
-<div class="btn btn-success" (click)="submit()">Submit</div>
+<button class="btn btn-secondary" (click)="clear()">Clear</button>
+<button class="btn btn-success" (click)="submit()" [disabled]="!isValid()">Submit</button>
 
 <ul *ngIf="results">
     <li *ngFor="let result of results">{{result}}</li>
 </ul>
-

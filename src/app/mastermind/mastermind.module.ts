@@ -6,11 +6,14 @@ import { MasterMindComponent } from './mastermind.component';
 
 import { AppSharedModule } from "../shared/shared.module";
 import { DragDropModule } from 'primeng/primeng';
+import { ColorService } from "./color.service";
+import { ColorsResolver } from "./color-resolver.service";
 
 const ROUTES = [
     { 
         path: '', 
-        component: MasterMindComponent
+        component: MasterMindComponent,
+        resolve: { colors: ColorsResolver}
     }
 ]
 
@@ -24,6 +27,8 @@ const ROUTES = [
         MasterMindComponent
     ],
     providers: [         
+        ColorService,
+        ColorsResolver
     ]
 })
 export class MasterMindModule { }
