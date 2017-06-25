@@ -7,7 +7,7 @@ import { Color } from "./mastermind.models";
 
 @Injectable()
 export class ColorService {
-    private readonly color_url = "../../assets/colors.json";
+    private readonly color_url = "/assets/colors.json";
 
     constructor(private http: Http) { }
 
