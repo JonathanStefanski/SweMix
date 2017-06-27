@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Song } from "./song.models";
-import { SongService } from "./song.service";
 
 
 @Component({
@@ -10,11 +9,12 @@ import { SongService } from "./song.service";
     styleUrls: ['song-list.component.css']
 })
 export class SongListComponent implements OnInit {
+    sortFields = [{field: 'mixId', order: 1}];
+    hideId: boolean = true;
     songs: Song[];
     constructor(
         private _route: ActivatedRoute,
-        private _router: Router,
-        private _songService: SongService
+        private _router: Router
     ) { }
 
     ngOnInit() { 
@@ -31,8 +31,7 @@ export class SongListComponent implements OnInit {
         this._router.navigate(['/songs', id]);
     }
 
-    generatePlaylist():void {
-        this._songService.createPlayList(this.songs);
+    toggleIds():void {        
+        this.hideId = !this.hideId;
     }
-
 }

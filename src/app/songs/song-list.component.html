@@ -1,5 +1,3 @@
-
-
 <div *ngIf="songs.length > 0">
     <!--<table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-inverse">
@@ -25,21 +23,19 @@
         <th>{{getTotal(songs) | time}}</th>
     </tfoot>
     </table>-->
-    
-    <p-dataTable  
-        [value]="songs" sortMode="multiple" [globalFilter]="gb" #dt 
-        [rows]="20" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]"
-        selectionMode="single" (onRowSelect)="navigateToDetailView($event.data.id)">
+
+    <p-dataTable [value]="songs" sortMode="multiple" [globalFilter]="gb" #dt [rows]="20" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]" [multiSortMeta]="sortFields" selectionMode="single" (onRowSelect)="navigateToDetailView($event.data.id)">
         <p-header>
             &nbsp;
             <a class="pull-left" [routerLink]="['/songs', 0, 'edit']"><i class="fa fa-plus"></i>Add a song</a>
             <span class="pull-right search-group"><i class="fa fa-search"></i><input #gb type="text" class="form-control search-input" placeholder="Filter songs"></span>
         </p-header>
         <p-footer>
-            <div class="btn btn-outline-primary btn-sm pull-left" (click)="generatePlaylist()">Generate playlist</div>
+            <div class="btn btn-outline-primary btn-sm pull-left" (click)="toggleIds()">Toggle ids</div>
             <span class="pull-right">Total length: {{getTotal(songs) | time}}</span>
         </p-footer>
-        <p-column field="id" header="#" [sortable]="true" [style]="{width: '75px', 'text-align': 'center'}"></p-column>
+        <p-column field="id" header="#" [sortable]="true" styleClass="id-col" [hidden]="hideId"></p-column>
+        <p-column field="mixId" header="Mix" [sortable]="true" styleClass="mix-col"></p-column>
         <p-column field="title" header="Title" [sortable]="true"></p-column>
         <p-column field="artist" header="Artist" [sortable]="true"></p-column>
         <p-column field="length" header="Length" [sortable]="true">

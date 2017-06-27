@@ -1,36 +1,37 @@
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #0275d8;
-  color: white;
-  cursor: pointer;
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    background-color: #0275d8;
+    color: white;
+    cursor: pointer;
 }
 
 .search-input {
-  width: 350px;
-  height: initial;
-  display: inline-block;
-  padding: 3px 6px;
-  margin-left: 4px;
+    width: 350px;
+    height: initial;
+    display: inline-block;
+    padding: 3px 6px;
+    margin-left: 4px;
 }
 
 i.fa.fa-plus {
-  margin-right: 5px;
-  background: #0275d8;
-  border-radius: 50%;
-  color: white;
-  padding: 2px 4px;
+    margin-right: 5px;
+    background: #0275d8;
+    border-radius: 50%;
+    color: white;
+    padding: 2px 4px;
 }
 
 .btn {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 442px) {
-   .search-group {
-     float: left;
-     display: block;
-     width: 100%;
-  }
-  .search-input {
-    width: 90%;
-  }
+    .search-group {
+        float: left;
+        display: block;
+        width: 100%;
+    }
+    .search-input {
+        width: 90%;
+    }
 }
