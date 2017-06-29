@@ -21,6 +21,14 @@
                 <a class="nav-link" data-toggle="tab" routerLink="/mastermind" routerLinkActive="active">Mastermind</a>
             </li>
         </ul>
+        <ul>
+        </ul>
+        <!--<div *ngIf="!messageService.isDisplayed" class="form-inline text-white">
+            <a (click)="displayMessages()">Show Messages</a>
+        </div>
+        <div *ngIf="messageService.isDisplayed" class="form-inline text-white">
+            <a (click)="hideMessages()">Hide Messages</a>
+        </div>-->
         <div *ngIf="_auth.isLoggedIn()" class="form-inline text-white">
             <span>Welkom {{_auth.currentUser.userName}}!</span>&nbsp; (
             <a class="link" (click)="logout()">Afmelden</a>)
@@ -38,5 +46,12 @@
 </div>
 <div style="min-height: 2em;" *ngIf="!loading"></div>
 <div class="container-fluid">
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div [ngClass]="{'col-md-9': messageService.isDisplayed, 'col-md-12': !messageService.isDisplayed}">
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="messageService.isDisplayed" class="col-md-3">
+            <router-outlet name="popup"></router-outlet>
+        </div>
+    </div>
 </div>
