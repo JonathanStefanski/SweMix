@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 nav.navbar {
-    margin-bottom: 2rem;
+    z-index: 1;
 }
 
 .has-danger .help-block {
@@ -26,4 +26,24 @@ nav.navbar {
 
 .ui-datatable-even .mix-col {
     background: #00d0ff;
+}
+
+
+/* Fade transition */
+
+swe-app div {
+    animation-duration: 1s;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+    transition: transform 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
