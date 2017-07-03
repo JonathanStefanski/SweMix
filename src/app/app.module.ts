@@ -12,6 +12,7 @@ import { MessagesModule } from "./messages/messages.module";
 import { Page404Component, PageErrorComponent } from "./page-404.component";
 
 import {DragDropModule} from 'primeng/primeng';
+import { MessagesService } from "./messages/messages.service";
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {DragDropModule} from 'primeng/primeng';
     MessagesModule,
     AppRoutingModule    
   ],
-  providers: [ ],
+  providers: [ MessagesService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

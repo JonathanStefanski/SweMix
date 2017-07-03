@@ -1,6 +1,6 @@
 <div class="row">
     <div class="pick-box col-md-1">
-        <div *ngFor="let color of colors" class="color-box" pDraggable="color" [style.background]="color.getCode()" (onDragStart)="dragStart(color)" (onDragEnd)="dragEnd()">
+        <div *ngFor="let color of colors" class="color-box" pDraggable="color" dragEffect="copy" [style.background]="color.getCode()" (onDragStart)="dragStart(color)" (onDragEnd)="dragEnd()">
         </div>
     </div>
 

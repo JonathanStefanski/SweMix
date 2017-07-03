@@ -20,15 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" routerLink="/mastermind" routerLinkActive="active">Mastermind</a>
             </li>
-        </ul>
-        <ul>
-        </ul>
-        <!--<div *ngIf="!messageService.isDisplayed" class="form-inline text-white">
-            <a (click)="displayMessages()">Show Messages</a>
-        </div>
-        <div *ngIf="messageService.isDisplayed" class="form-inline text-white">
-            <a (click)="hideMessages()">Hide Messages</a>
-        </div>-->
+        </ul>            
         <div *ngIf="_auth.isLoggedIn()" class="form-inline text-white">
             <span>Welkom {{_auth.currentUser.userName}}!</span>&nbsp; (
             <a class="link" (click)="logout()">Afmelden</a>)
@@ -36,6 +28,14 @@
         <div *ngIf="!_auth.isLoggedIn()" class="form-inline text-white">
             <a class="link" routerLink="/login">Aanmelden</a>
         </div>
+        <ul class="navbar-nav message-btn">
+            <li class="nav-item" *ngIf="!messageService.isDisplayed">
+                <button class="btn btn-outline-info" (click)="displayMessages()">Show Messages</button>
+            </li>
+            <li class="nav-item" *ngIf="messageService.isDisplayed">
+                <button class="btn btn-outline-info" (click)="hideMessages()">Hide Messages</button>
+            </li>
+        </ul>   
     </div>
 </nav>
 <div *ngIf="loading" class="alert alert-info alert-dismissible fade show" role="alert">
@@ -49,9 +49,9 @@
     <div class="row">
         <div [ngClass]="{'col-md-9': messageService.isDisplayed, 'col-md-12': !messageService.isDisplayed}">
             <router-outlet></router-outlet>
-        </div>
-        <div *ngIf="messageService.isDisplayed" class="col-md-3">
-            <router-outlet name="popup"></router-outlet>
+        </div>     
+        <div class="col-md-3">
+            <router-outlet name="popup"></router-outlet>        
         </div>
     </div>
 </div>

@@ -21,9 +21,7 @@ export class EmbedPipe implements PipeTransform {
   }
 } 
 
-@Pipe({
-    name: 'time'
-})
+@Pipe({ name: 'time' })
 export class TimePipe implements PipeTransform {
 
     transform(value: number, args: string):string {
@@ -39,4 +37,12 @@ export class TimePipe implements PipeTransform {
         return result;
     }
 
+}
+
+@Pipe({ name: 'filter' })
+export class FilterPipe implements PipeTransform {
+    transform(items: any[], field : string, value : string): any[] {  
+        if (!items) return [];        
+        return items.filter(it => it[field] == value);
+    }
 }

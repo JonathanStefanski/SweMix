@@ -2,7 +2,7 @@ import { NgModule }  from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { SafePipe, TimePipe, EmbedPipe } from './shared.pipes';
+import { SafePipe, TimePipe, EmbedPipe, FilterPipe } from './shared.pipes';
 import { NumericValidators } from "./numeric.validator";
 
 import { DataService } from "./data.service"
@@ -12,14 +12,16 @@ import { DataService } from "./data.service"
   declarations: [ 
     TimePipe, 
     SafePipe, 
-    EmbedPipe 
+    EmbedPipe,
+    FilterPipe
   ],
   exports: [ 
     CommonModule,
     FormsModule,
     TimePipe, 
     SafePipe, 
-    EmbedPipe 
+    EmbedPipe,
+    FilterPipe 
   ],
   providers: [
     DataService

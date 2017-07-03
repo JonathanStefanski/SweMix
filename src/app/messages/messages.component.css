@@ -1,3 +1,15 @@
 .message-row {
     margin-bottom: 10px;
 }
+
+.card-header {
+    position: relative;
+}
+
+.card-header > .btn { 
+    top: 2px;
+    bottom: 2px;  
+    right:2px;
+    position: absolute;
+    cursor: pointer;
+}

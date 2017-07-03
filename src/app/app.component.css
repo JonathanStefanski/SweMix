@@ -10,3 +10,7 @@ a.link:hover {
     color: yellow;
     font-weight: bold;
 }
+
+.message-btn {
+    margin-left: 30px;    
+}

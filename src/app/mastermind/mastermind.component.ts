@@ -39,18 +39,18 @@ export class MasterMindComponent implements OnInit {
         return this.guesses.findIndex(g => g.color.index == null) == -1;
     }
 
-    dragStart(color : Color) {        
+    dragStart(color : Color) { 
         this.draggedColor = color;
     }
 
-    drop(guess : Guess) {        
+    drop(guess : Guess) {              
         if (this.draggedColor) {            
             guess.color = this.draggedColor;
         }
     }
     
-    dragEnd() {
-        this.draggedColor = null;
+    dragEnd() {       
+        this.draggedColor = null;        
     }
 
     submit() {

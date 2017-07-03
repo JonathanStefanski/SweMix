@@ -20,16 +20,16 @@ export class AppComponent {
     router.events.subscribe((routerEvent : Event) => {
       this.checkRouterEvent(routerEvent);
     });
-    console.log("Messages service display? " + messageService.isDisplayed);
   }
 
   logout() : void {
+    this.messageService.addMessage(`${this._auth.currentUser.userName} logged out`);    
     this._auth.logout();
     this.router.navigate(['/home']);
   }
 
   checkRouterEvent(routerEvent: Event) {
-    if (routerEvent instanceof NavigationStart) {
+    if (routerEvent instanceof NavigationStart) {      
       this.loading = true;
     }
 
@@ -42,14 +42,14 @@ export class AppComponent {
 
   displayMessages(): void {
         // Example of primary and secondary routing together
-        // this.router.navigate(['/login', {outlets: { messageOutlet: ['messages']}}]); // Does not work
-        // this.router.navigate([{outlets: { primary: ['login'], messageOutlet: ['messages']}}]); // Works
-        this.router.navigate([{outlets: { messageOutlet: ['messages']}}]); // Works
+        // this.router.navigate(['/login', {outlets: { popup: ['messages']}}]); // Does not work
+        // this.router.navigate([{outlets: { primary: ['login'], popup: ['messages']}}]); // Works
+        this.router.navigate([{outlets: { popup: ['messages']}}]); // Works
         this.messageService.isDisplayed = true;
     }
 
     hideMessages(): void {
-        this.router.navigate([{ outlets: { messageOutlet: null } }]);
+        this.router.navigate([{ outlets: { popup: null } }]);
         this.messageService.isDisplayed = false;
     }
 

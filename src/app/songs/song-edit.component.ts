@@ -13,7 +13,7 @@ import { YoutubeService } from "./youtube.service";
 @Component({
     moduleId: module.id,
     templateUrl: 'song-edit.component.html',
-    styleUrls: ['song-edit.component.css']    
+    styleUrls: ['song-edit.component.css']  
 })
 export class SongEditComponent implements OnInit, AfterViewInit {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];

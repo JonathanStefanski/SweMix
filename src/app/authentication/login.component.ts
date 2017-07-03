@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
+import { MessagesService } from "../messages/messages.service";
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html',
+    templateUrl: 'login.component.html'
 })
 export class LoginComponent {
     errorMessage: string;
@@ -17,7 +18,8 @@ export class LoginComponent {
     waiting: boolean;
 
     constructor(private authService: AuthService,
-                private router: Router) {
+                private router: Router,
+                private messageService: MessagesService) {
                     this.waiting = false;
                  }
 
@@ -30,6 +32,7 @@ export class LoginComponent {
                 result => {
                     this.waiting = false;
                     if (result) {
+                        this.messageService.addMessage(`${userName} successfully logged in`);
                         if (this.authService.redirectUrl) {
                             this.router.navigateByUrl(this.authService.redirectUrl);
                         } else {

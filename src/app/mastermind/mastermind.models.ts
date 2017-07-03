@@ -19,7 +19,7 @@ export class Color implements IColor {
 
     public index : number;
     public color : string;
-    public code : string;   
+    public code : string;  
 
     getCode(){
         return this.code || "#FFF";

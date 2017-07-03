@@ -9,12 +9,15 @@ import { MessagesService } from "./messages.service";
 })
 
 export class MessagesComponent implements OnInit {
+    messages: string[];
     constructor(
         private router: Router,
         private messageService: MessagesService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.messages = this.messageService.getAll();
+     }
 
     close(): void {
         // Close the popup.
