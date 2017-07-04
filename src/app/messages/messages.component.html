@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-block">        
-        <div *ngFor="let message of messages | async; let i=index">
+        <div *ngFor="let message of messages; let i=index">
             <p *ngIf="i < 10" class="message-row">
                 {{ message.text }} at {{ message.timeStamp | date:'medium' }}
             </p>
