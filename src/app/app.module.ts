@@ -11,7 +11,7 @@ import { HomeComponent } from "./home/home.component";
 import { MessagesModule } from "./messages/messages.module";
 import { Page404Component, PageErrorComponent } from "./page-404.component";
 
-import {DragDropModule} from 'primeng/primeng';
+import { DragDropModule } from 'primeng/primeng';
 import { MessagesService } from "./messages/messages.service";
 
 

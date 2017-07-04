@@ -5,6 +5,7 @@ import { AppSharedModule } from '../shared/shared.module';
 
 import { MessagesComponent } from './messages.component';
 import { MessagesService } from './messages.service';
+import { AuthGuard } from "../authentication/auth-guard.service";
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { MessagesService } from './messages.service';
             {
                 path: 'messages',
                 component: MessagesComponent,
-                outlet: 'popup'
+                outlet: 'popup',
+                canActivate: [AuthGuard]
             }
         ])
     ],

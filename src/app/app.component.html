@@ -28,7 +28,7 @@
         <div *ngIf="!_auth.isLoggedIn()" class="form-inline text-white">
             <a class="link" routerLink="/login">Aanmelden</a>
         </div>
-        <ul class="navbar-nav message-btn">
+        <ul *ngIf="_auth.isLoggedIn()" class="navbar-nav message-btn">
             <li class="nav-item" *ngIf="!messageService.isDisplayed">
                 <button class="btn btn-outline-info" (click)="displayMessages()">Show Messages</button>
             </li>

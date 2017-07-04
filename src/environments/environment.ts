@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://swemix-api.azurewebsites.net/'
-  //apiUrl: 'http://localhost:31956/' 
+  //apiUrl: 'http://swemix-api.azurewebsites.net/'
+  apiUrl: 'http://localhost:31956/' 
 };

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { MessagesService } from "./messages.service";
+import { Observable } from "rxjs/Rx";
+import { Message } from "./messages.models";
 
 @Component({
     moduleId: module.id,
@@ -9,14 +11,16 @@ import { MessagesService } from "./messages.service";
 })
 
 export class MessagesComponent implements OnInit {
-    messages: string[];
+    messages: Message[];
     constructor(
         private router: Router,
         private messageService: MessagesService
     ) { }
 
     ngOnInit() {
-        this.messages = this.messageService.getAll();
+       this.messageService.getAll().subscribe(
+            messages => this.messages = messages
+        );
      }
 
     close(): void {

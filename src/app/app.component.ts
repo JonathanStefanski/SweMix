@@ -3,6 +3,7 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError, Navigat
 
 import { AuthService } from "./authentication/auth.service";
 import { MessagesService } from "./messages/messages.service";
+import { Message } from "app/messages/messages.models";
 
 @Component({
   moduleId: module.id,
@@ -23,9 +24,15 @@ export class AppComponent {
   }
 
   logout() : void {
-    this.messageService.addMessage(`${this._auth.currentUser.userName} logged out`);    
-    this._auth.logout();
-    this.router.navigate(['/home']);
+    var message = new Message();
+    message.text = `${this._auth.currentUser.userName} logged out`;    
+    this.messageService.addMessage(message).subscribe(
+      () => {                
+        this._auth.logout();             
+        this.router.navigate([{ outlets: { primary: ['home'], popup: null } }]);
+        this.messageService.isDisplayed = false;   
+      }
+    );        
   }
 
   checkRouterEvent(routerEvent: Event) {

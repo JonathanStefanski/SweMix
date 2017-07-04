@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
 import { MessagesService } from "../messages/messages.service";
+import { Message } from "app/messages/messages.models";
 
 @Component({
     moduleId: module.id,
@@ -32,7 +33,9 @@ export class LoginComponent {
                 result => {
                     this.waiting = false;
                     if (result) {
-                        this.messageService.addMessage(`${userName} successfully logged in`);
+                        var message = new Message();
+                        message.text = `${userName} logged in`;
+                        this.messageService.addMessage(message).subscribe(() => this.messageService.getAll(true));
                         if (this.authService.redirectUrl) {
                             this.router.navigateByUrl(this.authService.redirectUrl);
                         } else {
