@@ -21,7 +21,8 @@ export class Song implements ISong  {
         public included : boolean = false,
         public mixId : string = null,
         public previousId? : number,
-        public nextId? : number
+        public nextId? : number,
+        public userId? : string
     ) { }
 
     getUrl():string {
