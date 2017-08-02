@@ -18,9 +18,13 @@ export class SongService {
     constructor(private _http: Http,
                 private _auth: AuthService,
                 private _windowService: WindowService) {
-      let bearer = this._auth.currentUser == null ? '' : this._auth.currentUser.access_token;
-      this.headers = new Headers({ 'Content-Type': 'application/json','Authorization': `Bearer ${bearer}` });
-      this.options = new RequestOptions({ headers: this.headers });     
+       this.setOptions();
+    }
+
+    private setOptions() {
+        let bearer = this._auth.currentUser == null ? '' : this._auth.currentUser.access_token;
+        this.headers = new Headers({ 'Content-Type': 'application/json','Authorization': `Bearer ${bearer}` });
+        this.options = new RequestOptions({ headers: this.headers });    
     }
 
      private extractData(response: Response) {    
@@ -33,32 +37,28 @@ export class SongService {
         
     }    
 
-    getSongs() : Observable<Song[]> {   
-        //console.log(this._auth.currentUser.roles.join('|'));
-        return this._http.get(this.baseUrl, this.options)
-            //.do((response: Response) => console.log(response))
+    getSongs() : Observable<Song[]> {           
+        return this._http.get(this.baseUrl)            
             .map(this.extractData)
             .catch(this._handleError);
     }
 
     getSongById(id:number) : Observable<Song> {
-         if (id === 0) { return Observable.of(this.initializeSong()); }
+        if (id === 0) { return Observable.of(this.initializeSong()); }
         const url = `${this.baseUrl}/${id}`;
-        return this._http.get(url, this.options)
-            //.do((response: Response) => console.log(response))
+        return this._http.get(url)            
             .map(this.extractData)
             .catch(this._handleError);
     }
 
     deleteSong(id: number): Observable<Response> {
-        
+        this.setOptions();
         const url = `${this.baseUrl}/${id}`;
-        return this._http.delete(url)
-            //.do(data => console.log('deleteSong: ' + JSON.stringify(data)))
+        return this._http.delete(url)            
             .catch(this._handleError);
     }
 
-    saveProduct(song: Song): Observable<Song> {        
+    saveSong(song: Song): Observable<Song> {        
         if (song.id === 0) {
             return this.createSong(song);
         }
@@ -66,6 +66,7 @@ export class SongService {
     }
 
     private createSong(song: Song): Observable<Song> {
+        this.setOptions();
         song.id = undefined;
         return this._http.post(this.baseUrl, song, this.options)
             .map(this.extractData)
@@ -74,6 +75,7 @@ export class SongService {
     }
 
     private updateSong(song: Song): Observable<Song> {
+        this.setOptions();
         const url = `${this.baseUrl}/${song.id}`;
         return this._http.put(url, song, this.options)
             .map(() => song)

@@ -86,7 +86,7 @@ export class SongEditComponent implements OnInit, AfterViewInit {
         let s = Object.assign({}, this.song, this.songForm.value);
         
         this._songService
-            .saveProduct(s)
+            .saveSong(s)
             .subscribe(
                 () => this.onSaveComplete(),
                 (error: any) => this.errorMessage = <any>error
