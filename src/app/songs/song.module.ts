@@ -14,6 +14,7 @@ import { YoutubeService } from "./youtube.service"
 import { AppSharedModule } from "../shared/shared.module";
 import { WindowService } from "../shared/window.service";
 import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { AdminGuard } from "app/authentication/auth-guard.service";
 
 const ROUTES = [
     { 
@@ -31,6 +32,7 @@ const ROUTES = [
         path: ':id/edit', 
         component: SongEditComponent, 
         resolve: { song: SongResolver},
+        canActivate: [ AdminGuard ],
         canDeactivate: [ SongEditGuard ]
     }
 ]
@@ -56,7 +58,8 @@ const ROUTES = [
         SongListResolver,
         SongDetailGuard,
         SongEditGuard,
-        YoutubeService          
+        YoutubeService,
+        AdminGuard          
     ]
 })
 export class SongModule { }

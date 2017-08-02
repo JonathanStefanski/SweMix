@@ -36,3 +36,36 @@ export  class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return false;
     }
 }
+
+@Injectable()
+export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
+
+    constructor(private authService: AuthService,
+                private router: Router) { }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        //console.log('In canActivate: ' + state.url);
+        return this.checkRole(state.url);
+    }
+
+    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        //console.log('In canActivateChild: ' + state.url);
+        return this.checkRole(state.url);
+    }
+
+    canLoad(route: Route): boolean {
+        //console.log('In canLoad: ' + route.path);
+        return this.checkRole(route.path);
+    }
+
+    checkRole(url: string): boolean {
+        if (this.authService.isInRole("Administrator")) {
+            return true;
+        }
+
+        // Retain the attempted URL for redirection
+        this.authService.redirectUrl = url;
+        this.router.navigate(['/login']);
+        return false;
+    }
+}

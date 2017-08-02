@@ -18,7 +18,7 @@ export class SongService {
     constructor(private _http: Http,
                 private _auth: AuthService,
                 private _windowService: WindowService) {
-      let bearer = this._auth.currentUser.access_token;
+      let bearer = this._auth.currentUser == null ? '' : this._auth.currentUser.access_token;
       this.headers = new Headers({ 'Content-Type': 'application/json','Authorization': `Bearer ${bearer}` });
       this.options = new RequestOptions({ headers: this.headers });     
     }

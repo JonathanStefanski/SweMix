@@ -3,7 +3,7 @@ import { RouterModule, CanActivate } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { Page404Component, PageErrorComponent } from './page-404.component';
-import { AuthGuard } from "./authentication/auth-guard.service";
+import { AuthGuard, AdminGuard } from "./authentication/auth-guard.service";
 
 import { SelectiveStrategy } from "./shared/selective-strategy.service";
 import { MessagesComponent } from "app/messages/messages.component";
@@ -11,7 +11,7 @@ import { MessagesComponent } from "app/messages/messages.component";
 const ROUTES = [
     { path: 'home', component: HomeComponent },
     { path: 'mastermind', data: {preload: true}, loadChildren: './mastermind/mastermind.module#MasterMindModule'},
-    { path: 'songs', canActivate: [ AuthGuard ], data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
+    { path: 'songs', data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
     { path: 'error', component: PageErrorComponent },    
     { path: '', redirectTo: 'home', pathMatch: 'full' },    
     { path: '**', component: Page404Component }

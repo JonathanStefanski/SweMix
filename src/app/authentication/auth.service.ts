@@ -30,6 +30,11 @@ export class AuthService {
         return !!this.currentUser;
     }
 
+    isInRole(role : string): boolean {
+        if (this.currentUser == null || this.currentUser.roles == null) return false;
+        return this.currentUser.roles.indexOf(role) > -1;
+    }
+
     login(userName: string, password: string): Observable<boolean> {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
