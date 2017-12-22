@@ -31,6 +31,6 @@ import { MessagesService } from "./messages/messages.service";
     AppRoutingModule    
   ],
   providers: [ MessagesService ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

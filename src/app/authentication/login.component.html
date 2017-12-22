@@ -1,84 +1,109 @@
 <div class="row">
     <div class="col-md-6 offset-md-3">
-<div class="card card-outline-primary">
-    <div class="card-header bg-primary text-white">
-        Gelieve in te loggen
-    </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark">
+                Gelieve eerst in te loggen...
+            </div>
+            <div class="card-body">
+                <form novalidate (ngSubmit)="login(loginForm)" #loginForm="ngForm" autocomplete="off">
+                        <div class="form-group row" [ngClass]="{'has-danger': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }">
+                            <label class="col-lg-4 col-form-label font-weight-bold">Login naam</label>                        
+                            <div class="col-lg-8">
+                                <input class="form-control" id="userNameId" type="text" placeholder="Jane Doe" required (ngModel)="userName"
+                                    name="userName" #userNameVar="ngModel" />
+                                <span class="help-block" *ngIf="(userNameVar.touched || userNameVar.dirty) && userNameVar.errors">
+                                    <span *ngIf="userNameVar.errors.required">
+                                            Login naam is verplicht!
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row" [ngClass]="{'has-danger': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid }">
+                            <label class="col-lg-4 col-form-label font-weight-bold">Wachtwoord</label>                        
+                            <div class="col-lg-8">
+                                <input class="form-control" id="passwordId" type="password" placeholder="*********" required (ngModel)="password"
+                                    name="password" #passwordVar="ngModel" />
+                                <span class="help-block" *ngIf="(passwordVar.touched || passwordVar.dirty) && passwordVar.errors">
+                                    <span *ngIf="passwordVar.errors.required">
+                                            Wachtwoord is verplicht!
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-lg-4 offset-lg-4">
+                                <span>
+                                    <button class="btn btn-dark" [type]="{'submit' : waiting, 'button' : !waiting}" style="width:80px;margin-right:10px" [disabled]="!loginForm.valid && !waiting">
+                                        <span *ngIf="!waiting">Log in</span>
+                                        <i *ngIf="waiting" class="text-center fa fa-spin fa-spinner"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
+                <p class="text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
+            </div>                        
+        </div>
+        <!--<div class="card card-outline-primary">
+            <div class="card-header bg-primary text-white">
+                Gelieve in te loggen
+            </div>
 
-    <div class="card-block">
-        <form class="form-horizontal"
-              novalidate
-              (ngSubmit)="login(loginForm)"
-              #loginForm="ngForm"
-              autocomplete="off" >
-            <fieldset>
-                <div class="form-group row" 
-                     [ngClass]="{'has-danger': (userNameVar.touched || 
+            <div class="card-block">
+                <form class="form-horizontal" novalidate (ngSubmit)="login(loginForm)" #loginForm="ngForm" autocomplete="off">
+                    <fieldset>
+                        <div class="form-group row" [ngClass]="{'has-danger': (userNameVar.touched || 
                                                userNameVar.dirty) && 
                                                !userNameVar.valid }">
-                    <label class="col-md-2 col-form-label font-weight-bold" >Username</label>
+                            <label class="col-md-2 col-form-label font-weight-bold">Username</label>
 
-                    <div class="col-md-8">
-                        <input class="form-control" 
-                                id="userNameId" 
-                                type="text" 
-                                placeholder="User Name (required)"
-                                required
-                                (ngModel) = "userName"
-                                name="userName"
-                                #userNameVar="ngModel" />
-                        <span class="help-block" *ngIf="(userNameVar.touched ||
+                            <div class="col-md-8">
+                                <input class="form-control" id="userNameId" type="text" placeholder="User Name (required)" required (ngModel)="userName"
+                                    name="userName" #userNameVar="ngModel" />
+                                <span class="help-block" *ngIf="(userNameVar.touched ||
                                                          userNameVar.dirty) &&
                                                          userNameVar.errors">
-                            <span *ngIf="userNameVar.errors.required">
-                                User name is required.
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="form-group row" 
-                     [ngClass]="{'has-danger': (passwordVar.touched || 
+                                    <span *ngIf="userNameVar.errors.required">
+                                        User name is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" [ngClass]="{'has-danger': (passwordVar.touched || 
                                                passwordVar.dirty) && 
                                                !passwordVar.valid }">
-                    <label class="col-md-2 col-form-label font-weight-bold" >Password</label>
+                            <label class="col-md-2 col-form-label font-weight-bold">Password</label>
 
-                    <div class="col-md-8">
-                        <input class="form-control" 
-                                id="passwordId" 
-                                type="password" 
-                                placeholder="Password (required)"
-                                required
-                                (ngModel) = "password"
-                                name="password"
-                                #passwordVar="ngModel" />
-                        <span class="help-block" *ngIf="(passwordVar.touched ||
+                            <div class="col-md-8">
+                                <input class="form-control" id="passwordId" type="password" placeholder="Password (required)" required (ngModel)="password"
+                                    name="password" #passwordVar="ngModel" />
+                                <span class="help-block" *ngIf="(passwordVar.touched ||
                                                          passwordVar.dirty) &&
                                                          passwordVar.errors">
-                            <span *ngIf="passwordVar.errors.required">
-                                Password is required.
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="form-group row">
-                    <div class="col-md-4 offset-md-2">
-                        <span>
-                            <button class="btn btn-primary"
-                                    [type]="{'submit' : waiting, 'button' : !waiting}"
-                                    style="width:80px;margin-right:10px"
-                                    [disabled]="!loginForm.valid && !waiting">
-                                <span *ngIf="!waiting">Log In</span>
-                                <i *ngIf="waiting" class="text-center fa fa-spin fa-spinner"></i>
-                            </button>
-                        </span>                        
-                     </div>
-                </div>
-            </fieldset>
-        </form>
-        <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>       
-    </div>
-</div>
+                                    <span *ngIf="passwordVar.errors.required">
+                                        Password is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 offset-md-2">
+                                <span>
+                                    <button class="btn btn-primary" [type]="{'submit' : waiting, 'button' : !waiting}" style="width:80px;margin-right:10px" [disabled]="!loginForm.valid && !waiting">
+                                        <span *ngIf="!waiting">Log In</span>
+                                        <i *ngIf="waiting" class="text-center fa fa-spin fa-spinner"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+            </div>
+        </div>-->
     </div>
 </div>
