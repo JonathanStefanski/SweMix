@@ -11,7 +11,7 @@ import { MessagesComponent } from "app/messages/messages.component";
 const ROUTES = [
     { path: 'home', component: HomeComponent },
     { path: 'mastermind', data: {preload: true}, loadChildren: './mastermind/mastermind.module#MasterMindModule'},
-    // { path: 'songs', data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
+    { path: 'songs', data: {preload: true}, loadChildren: './songs/song.module#SongModule'},
     { path: 'error', component: PageErrorComponent },    
     { path: '', redirectTo: 'home', pathMatch: 'full' },    
     { path: '**', component: Page404Component }

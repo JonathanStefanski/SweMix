@@ -1,42 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/home">
-        <i class="fa fa-futbol-o"></i> Lepside.be
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler01" 
-            aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarToggler01">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/home" routerLinkActive="active">Home</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/mastermind" routerLinkActive="active">Mastermind</a>
-                </li>
-            </ul>            
-            <div *ngIf="_auth.isLoggedIn()" class="form-inline text-white">
-                <span>Welkom {{_auth.currentUser.userName}}!</span>&nbsp; (
-                <a class="link" (click)="logout()">Afmelden</a>)
-            </div>
-            <div *ngIf="!_auth.isLoggedIn()" class="form-inline text-white">
-                <a class="link" routerLink="/login">Aanmelden</a>
-            </div>
-            <ul *ngIf="_auth.isLoggedIn()" class="navbar-nav message-btn">
-                <li class="nav-item" *ngIf="!messageService.isDisplayed">
-                    <button class="btn btn-outline-info" (click)="displayMessages()">Toon meldingen</button>
-                </li>
-                <li class="nav-item" *ngIf="messageService.isDisplayed">
-                    <button class="btn btn-outline-info" (click)="hideMessages()">Verberg meldingen</button>
-                </li>
-            </ul>   
-        </div>
-</nav>
-<!--<nav class="navbar navbar-inverse bg-inverse">
-   
-    <a class="navbar-brand" routerLink="/home">
-        <i class="fa fa-futbol-o"></i> Lepside.be
-    </a>
+<nav class="navbar navbar-inverse navbar-toggleable-md bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <a class="navbar-brand" routerLink="/home"><i class="fa fa-music"></i> SweMix Playlist</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav mr-auto">
             <li class="nav-item">
@@ -44,8 +10,8 @@
             </li>
             <li class="nav-item dropdown" routerLinkActive="active">
                 <a class="nav-link dropdown-toggle" href="#" id="songMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Songs
-                </a>
+          Songs
+        </a>
                 <div class="dropdown-menu" aria-labelledby="songMenuLink">
                     <a class="dropdown-item" routerLink="/songs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }">Display list</a>
                     <a class="dropdown-item" [routerLink]="['/songs', 0, 'edit']" routerLinkActive="active">Add a Song</a>
@@ -64,14 +30,14 @@
         </div>
         <ul *ngIf="_auth.isLoggedIn()" class="navbar-nav message-btn">
             <li class="nav-item" *ngIf="!messageService.isDisplayed">
-                <button class="btn btn-outline-info" (click)="displayMessages()">Toon meldingen</button>
+                <button class="btn btn-outline-info" (click)="displayMessages()">Show Messages</button>
             </li>
             <li class="nav-item" *ngIf="messageService.isDisplayed">
-                <button class="btn btn-outline-info" (click)="hideMessages()">Verberg meldingen</button>
+                <button class="btn btn-outline-info" (click)="hideMessages()">Hide Messages</button>
             </li>
         </ul>   
     </div>
-</nav>-->
+</nav>
 <div *ngIf="loading" class="alert alert-info alert-dismissible fade show" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
